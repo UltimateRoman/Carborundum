@@ -63,6 +63,6 @@ export const getMemberList = async() => {
 };
 
 export const getMemberScore = async (member) => {
-    const score = await cm.methods.memberScores(member);
+    const score = await cm.methods.memberScores(member).call();
     return score;
 };
