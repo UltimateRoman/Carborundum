@@ -66,3 +66,16 @@ export const getMemberScore = async (member) => {
     const score = await cm.methods.memberScores(member).call();
     return score;
 };
+
+export const donate = async(score) => {
+    await cm.methods.donate(score)
+    .send({from: account, value: web3.utils.toWei(score.toString())})
+    .on("transactionHash", function (hash) {})
+    .on("receipt", function (receipt) {})
+    .on("confirmation", (confirmationNumber, receipt) => {
+      window.location.reload();
+    })
+    .on("error", (error, receipt) => {
+      window.alert("Error occured: ", error);
+    });
+};

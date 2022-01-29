@@ -34,7 +34,7 @@ function App() {
     return(
       <div>
         <center>
-          <p style={{fontSize: 30}}>{account}</p>
+          <p style={{fontSize: 20}}>{account}</p>
           <h3>Trees contributed: {myScore.toString()}</h3>
         </center>
       </div>
@@ -43,7 +43,7 @@ function App() {
     return(
       <div>
         <center>
-          <p style={{fontSize: 30}}>Unsupported browser, use a web3 wallet</p>
+          <p style={{fontSize: 20}}>Unsupported browser, use a web3 wallet</p>
         </center>
       </div>
     );
