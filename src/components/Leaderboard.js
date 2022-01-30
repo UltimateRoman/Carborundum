@@ -40,7 +40,8 @@ const Leaderboard = () => {
     
     return (
         <React.Fragment>
-            <h1>Global Leaderboard</h1>
+            <br/>
+            <h1 style={{textAlign: 'center', color: 'royalblue'}}>Global Leaderboard</h1>
             <br/><br/>
             <div style={{display: 'flex', justifyContent: 'center'}}>
             <Paper sx={{ width: '50%', overflow: 'hidden' }}>

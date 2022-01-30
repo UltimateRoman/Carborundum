@@ -78,6 +78,7 @@ export const donate = async (score, amount) => {
     .on("receipt", function (receipt) {})
     .on("confirmation", (confirmationNumber, receipt) => {
       window.location.reload();
+      window.alert("Thanks for donating ", score, " trees");
     })
     .on("error", (error, receipt) => {
       window.alert("Error occured: ", error);
