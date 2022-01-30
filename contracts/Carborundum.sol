@@ -27,6 +27,7 @@ contract Carborundum is Ownable {
     function donate(uint _score) external payable {
         if (!isMember(msg.sender)) {
             members.push(msg.sender);
+            memberCount++;
         }
         memberScores[msg.sender] += _score;
         if (organizationAddress != address(0)) {

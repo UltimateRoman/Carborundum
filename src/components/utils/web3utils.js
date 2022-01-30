@@ -52,14 +52,18 @@ export const loadBlockchainData = async () => {
     }
 };
 
-export const getMemberList = async() => {
+export const getMemberScoreList = async() => {
     const memberCount = await cm.methods.memberCount().call();
-    let members = [];
+    let memberScores = [];
     for(let i = 0; i < memberCount; ++i) {
+        let memberScore = {};
         const member = await cm.methods.members(i).call();
-        members.push(member);
+        memberScore.address = member;
+        const score = await getMemberScore(member);
+        memberScore.score = score;
+        memberScores.push(memberScore);
     }
-    return members;
+    return memberScores;
 };
 
 export const getMemberScore = async (member) => {
@@ -67,9 +71,9 @@ export const getMemberScore = async (member) => {
     return score;
 };
 
-export const donate = async (score) => {
+export const donate = async (score, amount) => {
     cm.methods.donate(score)
-    .send({from: account, value: web3.utils.toWei(score.toString())})
+    .send({from: account, value: web3.utils.toWei(amount.toString())})
     .on("transactionHash", function (hash) {})
     .on("receipt", function (receipt) {})
     .on("confirmation", (confirmationNumber, receipt) => {

@@ -3,9 +3,12 @@ import {
   loadWeb3,
   loadBlockchainData,
   connectAccount,
-  getMemberList,
   getMemberScore
-} from "./utils/web3utils.js";
+} from './utils/web3utils.js';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Main from './Main.js';
+import Navbar from './Navbar.js';
+import Leaderboard from './Leaderboard.js';
 import './App.css';
 
 function App() {
@@ -16,9 +19,9 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       const connected = await loadWeb3();
-      if(connected) {
+      if (connected) {
         const loaded = await loadBlockchainData();
-        if(loaded) {
+        if (loaded) {
           const acc = await connectAccount();
           setAccount(acc);   
           setConnected(true);
@@ -32,12 +35,21 @@ function App() {
 
   if (isConnected) {
     return(
-      <div>
-        <center>
-          <p style={{fontSize: 20}}>{account}</p>
-          <h3>Trees contributed: {myScore.toString()}</h3>
-        </center>
-      </div>
+      <BrowserRouter>
+      <Navbar/>
+        <Routes>
+          <Route exact path="/" element={
+            <Main 
+              account={account} 
+              myScore={myScore}
+            />
+          } /> 
+      
+          <Route path="leaderboard" element={
+            <Leaderboard />
+          } />        
+        </Routes>
+      </BrowserRouter>
     );
   } else {
     return(
