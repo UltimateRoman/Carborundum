@@ -67,8 +67,8 @@ export const getMemberScore = async (member) => {
     return score;
 };
 
-export const donate = async(score) => {
-    await cm.methods.donate(score)
+export const donate = async (score) => {
+    cm.methods.donate(score)
     .send({from: account, value: web3.utils.toWei(score.toString())})
     .on("transactionHash", function (hash) {})
     .on("receipt", function (receipt) {})
